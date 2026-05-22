@@ -4,6 +4,7 @@ import AddEntry from './pages/AddEntry'
 import Profile from './pages/Profile'
 import PageFlip from './components/PageFlip'
 import AllEntries from './pages/AllEntries'
+import EntryDetails from './pages/EntryDetails'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/add" element={<AddEntry />} />
         <Route path="/profile" element={<Profile />}/>
         <Route path="/entries" element = {<AllEntries />}/>
+        <Route path="/entry/:id" element = {<EntryDetails />}/>
       </Routes>
     </BrowserRouter>
   )
