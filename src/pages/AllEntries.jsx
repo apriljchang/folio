@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom'
 
 export default function AllEntries() {
     const [entries, setEntries] = useState([])
+    const navigate = useNavigate() 
 
     useEffect(() => {
         const savedEntries = localStorage.getItem('entries')
@@ -13,14 +14,15 @@ export default function AllEntries() {
         }   
     }, [])
 
-    const navigate = useNavigate() 
-
     return (
         <div className = "allEntries">
                 <h1 className = "all-entries-title">all entries</h1>
                 <div className = "all-entries-grid">
                     {entries.map(entry => (
-                        <div className="film-card" key={entry.id}>
+                        <div className="film-card" 
+                        key={entry.id}
+                        onClick = {() => {navigate(`/entry/${entry.id}`)}}
+                        >
                             <div className = "film-poster">
                                 {entry.posterURL ? (
                                     <img src={`https://image.tmdb.org/t/p/w500${entry.posterURL}`} />
