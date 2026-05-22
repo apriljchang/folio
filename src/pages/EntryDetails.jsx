@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import '../css/EntryDetails.css'
 
 export default function EntryDetails() {
     const { id } = useParams()
