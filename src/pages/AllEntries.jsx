@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import '../css/AllEntries.css'
 import Stars from '../components/Stars'
+import {useNavigate} from 'react-router-dom'
 
 export default function AllEntries() {
     const [entries, setEntries] = useState([])
@@ -11,6 +12,8 @@ export default function AllEntries() {
             setEntries(JSON.parse(savedEntries))
         }   
     }, [])
+
+    const navigate = useNavigate() 
 
     return (
         <div className = "allEntries">
