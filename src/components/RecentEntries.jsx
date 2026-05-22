@@ -1,0 +1,39 @@
+import '../css/RecentEntries.css'
+import {useState, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+import Stars from '../components/Stars'
+
+
+
+export default function RecentEntries() {
+  const [entries, setEntries] = useState([])
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const savedEntries = localStorage.getItem('entries')
+    if (savedEntries) {
+      const all = JSON.parse(savedEntries)
+      setEntries(all.slice(-3))
+    }   
+  }, [])
+
+  return (
+    <section className="recent-entries">
+      <h2 className = "recent-title">recently watched</h2>
+      <div className="entries-grid">
+        {entries.map(entry => (
+          <div className="entry-card" key={entry.id}>
+            <h3>{entry.title}</h3>
+            <div className="disabled-stars" style={{ pointerEvents: 'none' }}>
+              <Stars defaultRating={entry.rating} />
+            </div>
+            <p>{entry.year}</p>
+            <p>{entry.notes}</p>
+            <p>{entry.date}</p>
+          </div>
+        ))}
+      </div>
+      <button className = "see-all-btn" onClick = {() => navigate('/entries')}>see all</button>
+    </section>
+  )
+}

@@ -1,0 +1,18 @@
+.starsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.star {
+    cursor: pointer;
+    transition: all 0.1s linear;
+    -webkit-text-stroke: 0.8px black;
+    padding: 0 2px; 
+}
+
+.star:hover {
+    transform: scale(1.1);
+}

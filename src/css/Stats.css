@@ -1,0 +1,48 @@
+.stats {
+  padding: 4rem 2rem;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out 0.1s forwards;
+}
+
+.stats-header {
+  font-size: 3rem;
+  color: #2b2b2b;
+  margin-bottom: 2rem;
+  font-family: 'Vividly';
+}
+
+.stats-display {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stats-card {
+  background-color: #fffdf7;
+  padding: 1.5rem 2rem;
+  width: 160px;
+  box-shadow: 3px 3px 0px #c9c0b0;
+  border: 1px solid #e0d8c8;
+}
+
+.stats-card:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+
+.stats-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.stats-number {
+  font-size: 2.6rem;
+  color: #2b2b2b;
+  font-weight: 700;
+  font-family: 'Vividly';
+}
+
+.stats-label {
+  font-size: 1.5rem;
+  color: #6b6b6b;
+  font-family: 'Vividly';
+}

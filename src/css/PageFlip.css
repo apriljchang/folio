@@ -1,0 +1,43 @@
+.triangle {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 200px;
+  background-color: #e8d8c0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  cursor: pointer;
+}
+
+.triangle-label {
+  position: absolute;
+  bottom: 35px;
+  right: 20px;
+  color: #2c2c2c;
+  font-family: 'Vividly';
+  font-size: 1.2rem;
+  transform: rotate(-50deg);
+  pointer-events: none;
+}
+
+.page-flip-overlay {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #e8d8c0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  animation: flipExpand 0.4s ease-in-out forwards;
+  z-index: 999;
+  pointer-events: none;
+}
+
+@keyframes flipExpand {
+  from {
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
