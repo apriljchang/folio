@@ -5,7 +5,7 @@ import Stars from '../components/Stars'
 
 export default function AddEntry() {
 const [title, setTitle] = useState('')
-const [date, setDate] = useState('')
+const [date, setDate] = useState(new Date().toISOString().split('T')[0])
 const [rating, setRating] = useState(3)
 const [notes, setNotes] = useState('')
 const [query, setQuery] = useState('')

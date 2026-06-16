@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 export default function EntryDetails() {
     const { id } = useParams()
     const [movie, setMovie] = useState(null)
+    
 
     useEffect(() => {
         const savedEntries = localStorage.getItem('entries')
@@ -21,11 +22,18 @@ export default function EntryDetails() {
     {
         return <div className = "loading">Loading movie details...</div>
     }
-
+    console.log(movie.date)
     return (
         <div className = " entry-details-container">
-            <h1 className = "movie-title">{movie.title}</h1>
-           <p className="movie-date">Watched on: {movie.date ? movie.date : "no date found"}</p>
+            <div className = "entry-main-details-container">
+                <h1 className = "movie-title">{movie.title}</h1>
+                <p className="movie-date">Watched on: {movie.date ? movie.date : "no date found"}</p>
+                <p className = "movie-notes">{movie.notes}</p>
+            </div>
+            <img 
+            className="movie-image" 
+            src={`https://image.tmdb.org/t/p/w500${movie.posterURL}`} 
+            />
         </div>
     )
 }
