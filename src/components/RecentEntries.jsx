@@ -22,7 +22,8 @@ export default function RecentEntries() {
       <h2 className = "recent-title">recently watched</h2>
       <div className="entries-grid">
         {entries.map(entry => (
-          <div className="entry-card" key={entry.id}>
+          <div className="entry-card" key={entry.id}
+          onClick = {() => {navigate(`/entry/${entry.id}`)}}>
             <h3>{entry.title}</h3>
             <div className="disabled-stars" style={{ pointerEvents: 'none' }}>
               <Stars defaultRating={entry.rating} />
@@ -34,6 +35,7 @@ export default function RecentEntries() {
         ))}
       </div>
       <button className = "see-all-btn" onClick = {() => navigate('/entries')}>see all</button>
+      <button className = "add-btn" onClick = {() => navigate('/add')}>add entry</button>
     </section>
   )
 }
