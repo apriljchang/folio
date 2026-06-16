@@ -1,32 +1,31 @@
 import '../css/Stats.css'
+import {useState, useEffect} from 'react'
 
-const fakeStats = {
-  totalWatched: 47,
-  totalWatchlist: 56,
-  avgRating: 4.2,
-  favGenre: "romance",
-}
 
 export default function Stats() {
+  const [entries, setEntries] = useState([])
+
+  useEffect(() => {
+    const savedEntries = localStorage.getItem('entries')
+    if (savedEntries) setEntries(JSON.parse(savedEntries))
+  }, [])
+
+  const totalWatched = entries.length
+  const avgRating = entries.length > 0
+    ? (entries.reduce((sum, e) => sum + Number(e.rating), 0) / entries.length).toFixed(1)
+    : 0
+
   return (
     <section className="stats">
       <h2 className="stats-header">stats</h2>
       <div className="stats-display">
         <div className="stats-card">
-          <p className="stats-number">{fakeStats.totalWatched}</p>
+          <p className="stats-number">{totalWatched}</p>
           <p className="stats-label">films watched</p>
         </div>
         <div className="stats-card">
-          <p className="stats-number">{fakeStats.totalWatchlist}</p>
-          <p className="stats-label">on watchlist</p>
-        </div>
-        <div className="stats-card">
-          <p className="stats-number">{fakeStats.avgRating}</p>
+          <p className="stats-number">{avgRating}</p>
           <p className="stats-label">avg rating</p>
-        </div>
-        <div className="stats-card">
-          <p className="stats-number">{fakeStats.favGenre}</p>
-          <p className="stats-label">fav genre</p>
         </div>
       </div>
     </section>
