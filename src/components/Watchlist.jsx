@@ -1,5 +1,7 @@
 import '../css/Watchlist.css'
 import {useState, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+
 
 const fakeWatchlist = [
   {
@@ -44,10 +46,18 @@ export default function Watchlist() {
     }
   }, [query])
 
+  const navigate = useNavigate();
+
   const handleRemove = (idToRemove) => {
     const updatedWatchlist = watchlist.filter(movie => movie.id !== idToRemove)
     setWatchlist(updatedWatchlist)
     localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist))
+  }
+
+  const handleWatch = (idToWatch) => {
+    const movie = watchlist.find(m => m.id === idToWatch)
+    handleRemove(idToWatch)
+    navigate('/add', {state: { movie }})
   }
 
   return (
@@ -113,6 +123,14 @@ export default function Watchlist() {
       </div>
       <h3>{entry.name ? entry.name: "no title"}</h3>
       <p>{entry.status}</p>
+
+      <button
+        type = "button"
+        className = "watch-btn"
+        onClick = {() => handleWatch(entry.id)}
+      >
+        watched
+      </button>
 
       <button
         type = "button"

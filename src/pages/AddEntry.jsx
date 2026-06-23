@@ -2,6 +2,7 @@ import '../css/AddEntry.css'
 import { useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Stars from '../components/Stars'
+import {useLocation} from 'react-router-dom'
 
 export default function AddEntry() {
 const [title, setTitle] = useState('')
@@ -14,7 +15,17 @@ const [posterURL, setPosterURL] = useState('')
 const [selectedMovie, setSelectedMovie] = useState(null)
 
 const navigate = useNavigate() 
+const location = useLocation()
 
+  useEffect(() => {
+    if (location.state?.movie) {
+      const movie = location.state.movie
+      setTitle(movie.name || movie.title)
+      setPosterURL(movie.poster_path)
+      setSelectedMovie(movie)
+    }
+  }, [])
+  
 const handleSubmit = () => {
     const entry = {
         id: Date.now(),
