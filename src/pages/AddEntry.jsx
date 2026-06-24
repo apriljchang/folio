@@ -3,6 +3,7 @@ import { useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Stars from '../components/Stars'
 import {useLocation} from 'react-router-dom'
+import {supabase} from '../supabase'
 
 export default function AddEntry() {
 const [title, setTitle] = useState('')
@@ -25,25 +26,29 @@ const location = useLocation()
       setSelectedMovie(movie)
     }
   }, [])
-  
-const handleSubmit = () => {
-    const entry = {
-        id: Date.now(),
-        title: title,
-        date: date,
-        rating: rating,
-        notes: notes,
-        posterURL: posterURL
-    }
 
-    const existing = JSON.parse(localStorage.getItem('entries')) || []
+const handleSubmit = async () => {
+  const entry = {
+    title: title,
+    date: date,
+    rating: rating,
+    notes: notes,
+    poster_url: posterURL
+  }
 
-    const updated = [...existing, entry]
+    console.log('sending:', entry)  // ← add this
 
-    localStorage.setItem('entries', JSON.stringify(updated))
 
+  const { error } = await supabase
+    .from('entries')
+    .insert(entry)
+
+  if (error) {
+    console.log('error saving:', error)
+  } else {
     navigate('/profile')
-}  
+  }
+}
 
 const searchMovies = async () => {
 const res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${import.meta.env.VITE_TMDB_API_KEY}&query=${query}`)  

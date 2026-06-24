@@ -2,6 +2,7 @@ import '../css/RecentEntries.css'
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import Stars from '../components/Stars'
+import {supabase} from '../supabase'
 
 
 
@@ -9,12 +10,18 @@ export default function RecentEntries() {
   const [entries, setEntries] = useState([])
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const savedEntries = localStorage.getItem('entries')
-    if (savedEntries) {
-      const all = JSON.parse(savedEntries)
-      setEntries(all.slice(-3))
-    }   
+  useEffect(()=> {
+    const fetchEntries = async () => {
+      const {data, error} = await supabase
+        .from('entries'
+        .select('*')
+        .order('id', {ascending: false})
+        .limit(3)
+
+        if (data) setEntries(data)
+      }
+
+      fetchEntries()
   }, [])
 
   return (
