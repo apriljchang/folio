@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Vividly';
+  src: url('src/assets/Vividly-Regular.ttf') format('truetype');
+}
+
+.home {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  align-items: center;
+}
+
+.home-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.home-label {
+  font-family: 'Vividly';
+  font-size: 2rem;
+  color: #2b2b2b;
+}
+
+.home-shelves {
+  width: 50%;
+  min-height: 100vh;
+  background-color: #dbcdb7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: flex 0.3s ease;
+}
+
+.home-shelves:hover {
+  flex: 1.2;
+}
+
+.home-journal {
+  width: 50%;
+  min-height: 100vh;
+  background-color: #fae9ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: flex 0.3s ease;
+}
+
+.home-journal:hover {
+  flex: 1.2;
+}

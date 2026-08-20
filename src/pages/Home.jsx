@@ -1,21 +1,22 @@
-import Hero from '../components/Hero'
-import shelves from '../components/shelves'
-import journal from '../components/journal'
-
+import '../css/Home.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
+  const navigate = useNavigate()
+
   return (
-    <main>
-      <div className = "home">
-          <Hero />
-          <div className = "home-shelves">
-            <h1>shelves</h1>
-            <shelves />
-          </div>
-          <div className = "home-journal">
-            <h1>journal</h1>
-            <journal />
-          </div>
+    <main className="home">
+      <div className="home-shelves" onClick={() => navigate('/shelves')}>
+        <h1 className="home-label">shelves</h1>
+      </div>
+
+      <div className="home-center">
+        <h1 className="hero-title">folio</h1>
+        <p className="hero-tagline">your journal through media</p>
+      </div>
+
+      <div className="home-journal" onClick={() => navigate('/journal')}>
+        <h1 className="home-label">journal</h1>
       </div>
     </main>
   )
