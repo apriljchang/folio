@@ -1,14 +1,23 @@
 import '../css/Stats.css'
 import {useState, useEffect} from 'react'
+import {supabase} from '../supabase'
 
 
 export default function Stats() {
   const [entries, setEntries] = useState([])
 
-  useEffect(() => {
-    const savedEntries = localStorage.getItem('entries')
-    if (savedEntries) setEntries(JSON.parse(savedEntries))
-  }, [])
+    useEffect(() => {
+        const fetchEntries = async () => {
+            const {data, error} = await supabase
+                .from("entries")
+                .select("*")
+                .order('id', {ascending: false})
+
+            if (data) setEntries(data)
+        }
+
+        fetchEntries()
+    }, [])
 
   const totalWatched = entries.length
   const avgRating = entries.length > 0

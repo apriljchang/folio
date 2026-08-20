@@ -10,19 +10,19 @@ export default function RecentEntries() {
   const [entries, setEntries] = useState([])
   const navigate = useNavigate()
 
-  useEffect(()=> {
-    const fetchEntries = async () => {
-      const {data, error} = await supabase
-        .from('entries'
-        .select('*')
-        .order('id', {ascending: false})
-        .limit(3)
+useEffect(() => {
+  const fetchEntries = async () => {
+    const { data, error } = await supabase
+      .from('entries')
+      .select('*')
+      .order('id', { ascending: false })
+      .limit(3)
 
-        if (data) setEntries(data)
-      }
+    if (data) setEntries(data)
+  }
 
-      fetchEntries()
-  }, [])
+  fetchEntries()
+}, [])
 
   return (
     <section className="recent-entries">

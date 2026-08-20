@@ -2,16 +2,23 @@ import {useEffect, useState} from 'react'
 import '../css/AllEntries.css'
 import Stars from '../components/Stars'
 import {useNavigate} from 'react-router-dom'
+import {supabase} from '../supabase'
 
 export default function AllEntries() {
     const [entries, setEntries] = useState([])
     const navigate = useNavigate() 
 
     useEffect(() => {
-        const savedEntries = localStorage.getItem('entries')
-        if (savedEntries) {
-            setEntries(JSON.parse(savedEntries))
-        }   
+        const fetchEntries = async () => {
+            const {data, error} = await supabase
+                .from("entries")
+                .select("*")
+                .order('id', {ascending: false})
+
+            if (data) setEntries(data)
+        }
+
+        fetchEntries()
     }, [])
 
     return (
@@ -24,8 +31,8 @@ export default function AllEntries() {
                         onClick = {() => {navigate(`/entry/${entry.id}`)}}
                         >
                             <div className = "film-poster">
-                                {entry.posterURL ? (
-                                    <img src={`https://image.tmdb.org/t/p/w500${entry.posterURL}`} />
+                                {entry.poster_url ? (
+                                    <img src={`https://image.tmdb.org/t/p/w500${entry.poster_url}`} />
                                 ) : (
                                     <div className="no-poster"></div>
                                 )}

@@ -66,6 +66,7 @@ return (
     <section className = "addEntryPage">
         <h1 className = "addEntryHeader">add entry page</h1>
         <form className = "addEntryForm">
+            <div className = "search-wrapper">
             <label HTMLfor = "query">search a movie: </label>
             <input
                 type = "text"
@@ -97,6 +98,7 @@ return (
                 ))}
             </div>
             )}
+            </div>
 
             <label HTMLfor="title">title:</label>
             <input 

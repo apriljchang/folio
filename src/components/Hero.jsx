@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import "/Users/aprilchang/Desktop/movie journal/my-film-journal/src/css/Hero.css"
+import "../css/Hero.css"
 
 export default function Hero() {
 

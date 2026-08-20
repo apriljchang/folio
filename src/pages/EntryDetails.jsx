@@ -1,22 +1,26 @@
 import { useParams } from 'react-router-dom'
 import '../css/EntryDetails.css'
 import { useState, useEffect } from 'react'
+import {supabase} from '../supabase'
 
 export default function EntryDetails() {
     const { id } = useParams()
     const [movie, setMovie] = useState(null)
     
 
-    useEffect(() => {
-        const savedEntries = localStorage.getItem('entries')
-        if (savedEntries) {
-            const allEntries = (JSON.parse(savedEntries))
+useEffect(() => {
+  const fetchEntry = async () => {
+    const { data, error } = await supabase
+      .from('entries')
+      .select('*')
+      .eq('id', id)
+      .single()
 
-            const foundMovie = allEntries.find(entry => entry.id === Number(id))
+    if (data) setMovie(data)
+  }
 
-            setMovie(foundMovie)
-        }  
-    }, [id])
+  fetchEntry()
+}, [id])
 
     if (!movie)
     {
@@ -32,7 +36,7 @@ export default function EntryDetails() {
             </div>
             <img 
             className="movie-image" 
-            src={`https://image.tmdb.org/t/p/w500${movie.posterURL}`} 
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_url}`} 
             />
         </div>
     )
