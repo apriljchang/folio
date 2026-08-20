@@ -1,16 +1,28 @@
-# React + Vite
+# folio 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A scrapbook-style film and TV journal built for tracking what you watch, how you felt about it, and what's next on your list.
 
-Currently, two official plugins are available:
+## features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Search movies and TV shows via the TMDB API
+- Log entries with ratings, notes, and watch dates
+- Browse your full journal with real movie posters
+- Maintain a watchlist and mark things as watched
+- Personal profile with stats and recently watched
+- Data persists via Supabase backend
 
-## React Compiler
+## tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React, React Router, CSS
+- **Backend:** Supabase (PostgreSQL)
+- **API:** TMDB (The Movie Database)
+- **Build tool:** Vite
+- **Deployed on:** Vercel
 
-## Expanding the ESLint configuration
+## screenshots
+*coming soon*
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## author
+April Chang - [github.com/apriljchang]
+(https://github.com/apriljchang)
+
